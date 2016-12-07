@@ -1,0 +1,35 @@
+
+
+<html>
+<head>
+
+    <title>Login Page</title>
+    <meta name="_csrf" content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" content="${_csrf.headerName}"/>
+    
+     <link href="../css/bootstrap.min.css" rel="stylesheet">
+     <jsp:include page="fragments/header.jsp" />
+  
+</head><body onload="document.f.username.focus();">
+<center>
+<h2>Log In</h2>
+<form name="f" action="/login" method="POST">
+<table>
+	<tbody>
+	<tr>
+	   <td><input type="text" name="username" value="" class="form-control" placeholder="Email address" required="" autofocus=""></td>
+		<td><input type="password" name="password" class="form-control" placeholder="Password" required="" ></td>
+	</tr>
+	<tr>
+	    <td colspan="2"><input name="submit" type="submit"  class="btn btn-lg btn-primary btn-block" value="Login"></td>
+	</tr>
+	<input  type="hidden"  name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  </tbody>
+</table>
+</form>
+</center>
+</body>
+
+</html>
+
