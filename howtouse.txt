@@ -1,0 +1,39 @@
+# how to run logging in Heroku
+install git CLI  - > open command --> run like bellow
+
+
+$ heroku logs -t --app app-name
+
+
+
+#how to run script sql 
+
+$ cat file.sql | heroku pg:psql --app app_name
+$ echo "select * from table;" | heroku pg:psql --app app_name
+$ heroku pg:psql --app app_name < file.sql
+
+
+# connect sql cliend with heroku
+
+http://stackoverflow.com/questions/11769860/connect-to-a-heroku-database-with-pgadmin
+
+
+
+If you want list of database
+
+SELECT datname FROM pg_database WHERE datistemplate = false;
+If you want list of tables from current pg installation of all databases
+
+SELECT table_schema,table_name FROM information_schema.tables
+ORDER BY table_schema,table_name;
+
+
+# replace spring logo dock
+
+<link rel="icon" type="image/png" href="images/fav.png">
+
+
+
+#  how to get username after login
+
+ final String currentUser = SecurityContextHolder.getContext().getAuthentication().getName();
