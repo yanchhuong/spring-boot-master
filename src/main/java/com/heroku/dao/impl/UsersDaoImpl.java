@@ -34,7 +34,7 @@ public class UsersDaoImpl extends JdbcDaoSupport implements UsersDao{
 	}
 	@Override
 	public void insertUserLog(UserDetailBean user) {
-		String sql = "INSERT INTO USERS " +"(user_cd,username,password) VALUES (?,?,?)" ;
+		String sql = "INSERT INTO USERS " +"(usercd,username,password) VALUES (?,?,?)" ;
         this.getJdbcTemplate().update(sql, new Object[]{user.getUserCd(),user.getUsername(),user.getPassword()});
         
         
@@ -42,7 +42,7 @@ public class UsersDaoImpl extends JdbcDaoSupport implements UsersDao{
 	}
 	@Override
 	public void insertUserDetail(UserDetailBean user) {
-		String sql = "INSERT INTO USER_DETAIL " +"(regdate,fname,lname,username_fk,email,user_cd) VALUES (?,?,?,?,?,?)" ;
+		String sql = "INSERT INTO USER_DETAIL " +"(regdate,fname,lname,username_fk,email,usercd) VALUES (?,?,?,?,?,?)" ;
         this.getJdbcTemplate().update(sql, new Object[]{user.getRegisterDate(),user.getFirst(),user.getLast()
         		,user.getUsername(),user.getEmail(),user.getUserCd()});
 		
