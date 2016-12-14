@@ -30,7 +30,7 @@ public class MessageController {
    
     
     SimpMessageHeaderAccessor accessor = SimpMessageHeaderAccessor.create();
-    accessor.setContentType(MimeTypeUtils.ALL);
+    accessor.setContentType(MimeTypeUtils.APPLICATION_OCTET_STREAM);
 
     accessor.setLeaveMutable(true);
     MessageHeaders headers = accessor.getMessageHeaders();
