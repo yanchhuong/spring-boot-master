@@ -100,10 +100,16 @@
         if (!message.length) {
           return;
         }
-        stompClient.send("/app/chat", {}, JSON.stringify({
+        
+        var sendsm = JSON.stringify({message: message, recipient: user});
+        
+      /*   stompClient.send("/app/chat", {}, JSON.stringify({
           'recipient': user,
           'message' : message
-        }));
+        })); */
+        
+        stompClient.send("/app/chat",{"content-type": "application/json;charset=UTF-8"}, send);
+        
         $(chatInput).val('');
         $(chatInput).focus();
       }
