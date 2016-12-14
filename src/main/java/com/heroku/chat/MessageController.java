@@ -35,7 +35,7 @@ public class MessageController {
       template.convertAndSendToUser(authedSender, "/queue/messages", chatMessage);
       
     }
-    System.out.println(chatMessage.getMessage());
+    System.out.println(chatMessage.toString());
     template.convertAndSendToUser(recipient, "/queue/messages", chatMessage);
   }
 
