@@ -27,25 +27,16 @@ public class MessageController {
   public void greeting(Message<Object> message, @Payload ChatMessage chatMessage) throws Exception {
     Principal principal = message.getHeaders().get(SimpMessageHeaderAccessor.USER_HEADER, Principal.class);
     String authedSender = principal.getName();
-   
     
-    SimpMessageHeaderAccessor accessor = SimpMessageHeaderAccessor.create();
-    accessor.setContentType(MimeTypeUtils.APPLICATION_OCTET_STREAM);
-
-    accessor.setLeaveMutable(true);
-    MessageHeaders headers = accessor.getMessageHeaders();
-    
-    
-   
     chatMessage.setSender(authedSender);
     String recipient = chatMessage.getRecipient();
     if (!authedSender.equals(recipient)) {
 
-      template.convertAndSendToUser(authedSender, "/queue/messages", chatMessage,headers);
+      template.convertAndSendToUser(authedSender, "/queue/messages", chatMessage);
       
     }
     System.out.println(chatMessage.getMessage());
-    template.convertAndSendToUser(recipient, "/queue/messages", chatMessage,headers);
+    template.convertAndSendToUser(recipient, "/queue/messages", chatMessage);
   }
 
 }
