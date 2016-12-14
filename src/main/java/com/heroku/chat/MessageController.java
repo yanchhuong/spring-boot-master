@@ -31,8 +31,7 @@ public class MessageController {
     
     SimpMessageHeaderAccessor accessor = SimpMessageHeaderAccessor.create();
     accessor.setContentType(MimeTypeUtils.ALL);
-    
-    accessor.setNativeHeader("foo", "bar");
+
     accessor.setLeaveMutable(true);
     MessageHeaders headers = accessor.getMessageHeaders();
     
