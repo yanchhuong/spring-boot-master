@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Language" content="en-us">
-<meta charset="UTF-8"> 
+<meta charset="UTF-16"> 
 
 <title>Chat</title>
 <script src="/js-lib/sockjs-0.3.4.js"></script>
@@ -99,19 +99,11 @@
         var message = $(chatInput).val();
         
         
-        message = MessageBuilder.withPayload(message.getPayload()).setHeaders(headers).build();
-        byte[] bytes = this.stompEncoder.encode((Message<byte[]>) message);
-
-        synchronized(session) {
-            session.sendMessage(new TextMessage(new String(bytes, UTF8_CHARSET)));
-        }
-        
-        
         if (!message.length) {
           return;
         }
         
-        stompClient.send("/app/chat",{"content-type": "application/json;charset=UTF-8"}, JSON.stringify({
+        stompClient.send("/app/chat",{"content-type": "application/json;charset=UTF-16"}, JSON.stringify({
           'recipient': user,
           'message' : message
         })); 
