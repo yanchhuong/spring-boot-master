@@ -99,9 +99,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	  @Override
 	  public void addArgumentResolvers(List<HandlerMethodArgumentResolver> arg0) {
-		  PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
-		    resolver.setFallbackPageable(new PageRequest(0, 5));
-		    arg0.add((HandlerMethodArgumentResolver) resolver);
 		
 	 }
 
