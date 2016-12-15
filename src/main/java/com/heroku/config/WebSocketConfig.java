@@ -56,11 +56,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	private  ObjectMapper objMapper;
 	
-	
-	WebSocketConfig(ObjectMapper objMapper){
-		this.objMapper = objMapper;
-	}
-	
 	@Override
 	  public void configureMessageBroker(MessageBrokerRegistry config) {
 	    config.enableSimpleBroker("/queue", "/topic");
