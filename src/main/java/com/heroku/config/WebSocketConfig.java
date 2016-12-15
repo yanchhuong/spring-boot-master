@@ -3,9 +3,7 @@ package com.heroku.config;
 import java.util.List;
 
 
-import org.eclipse.jetty.websocket.api.WebSocketBehavior;
-import org.eclipse.jetty.websocket.api.WebSocketPolicy;
-import org.eclipse.jetty.websocket.server.WebSocketServerFactory;
+
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,8 +24,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketTransportRegistration;
-import org.springframework.web.socket.server.jetty.JettyRequestUpgradeStrategy;
-import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.heroku.service.impl.ActiveUserService;
@@ -104,23 +101,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 	    return new ActiveUserService();
 	  }
 	  
-	   @Bean
-	  public DefaultHandshakeHandler handshakeHandler() {
-//	        LOGGER.info("Websocket buffer size: " + BUFFER_SIZE + " bytes.");
-	        WebSocketPolicy policy = new WebSocketPolicy(WebSocketBehavior.SERVER);
-	        policy.setMaxTextMessageBufferSize(BUFFER_SIZE);
-	        policy.setMaxTextMessageSize(MAX_TEXT_MESSAGE_SIZE);
-	        policy.setMaxBinaryMessageBufferSize(BUFFER_SIZE);
-	        policy.setMaxBinaryMessageSize(MAX_TEXT_MESSAGE_SIZE);
-	        policy.setInputBufferSize( BUFFER_SIZE);
-	        policy.setIdleTimeout(600000);
 
-	        return new DefaultHandshakeHandler(
-	                new JettyRequestUpgradeStrategy(new WebSocketServerFactory(policy)));
-	   }
-
-	 @Override
-	 public void addArgumentResolvers(List<HandlerMethodArgumentResolver> arg0) {
+	  @Override
+	  public void addArgumentResolvers(List<HandlerMethodArgumentResolver> arg0) {
 		  PageableHandlerMethodArgumentResolver resolver = new PageableHandlerMethodArgumentResolver();
 		    resolver.setFallbackPageable(new PageRequest(0, 5));
 		    arg0.add((HandlerMethodArgumentResolver) resolver);
