@@ -69,7 +69,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	  @Override
 	  public void registerStompEndpoints(StompEndpointRegistry registry) {
-	    registry.addEndpoint("/chat", "/activeUsers").withSockJS().setSessionCookieNeeded(false).setStreamBytesLimit(512*1024).setHttpMessageCacheSize(1000).setDisconnectDelay(30*1000);
+	    registry.addEndpoint("/chat", "/activeUsers").withSockJS();
 	    
 	  }
 
