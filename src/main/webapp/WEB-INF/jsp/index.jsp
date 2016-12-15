@@ -97,6 +97,16 @@
       function sendMessageTo(user) {
         var chatInput = '#input-chat-' + user;
         var message = $(chatInput).val();
+        
+        
+        message = MessageBuilder.withPayload(message.getPayload()).setHeaders(headers).build();
+        byte[] bytes = this.stompEncoder.encode((Message<byte[]>) message);
+
+        synchronized(session) {
+            session.sendMessage(new TextMessage(new String(bytes, UTF8_CHARSET)));
+        }
+        
+        
         if (!message.length) {
           return;
         }
