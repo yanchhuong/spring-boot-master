@@ -54,7 +54,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
      public static final int BUFFER_SIZE = MAX_TEXT_MESSAGE_SIZE * 5;
 
 
-	private  ObjectMapper objMapper;
+	private  ObjectMapper objMapper=new ObjectMapper() ;
 	
 	@Override
 	  public void configureMessageBroker(MessageBrokerRegistry config) {
