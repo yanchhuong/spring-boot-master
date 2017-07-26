@@ -22,9 +22,9 @@
  <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <script src="/js/jquery-1.7.2.min.js"></script> 
+    <script src="/js-lib/jquery-1.7.2.min.js"></script> 
    
-    <script src="/js-lib/upload_file.js"></script>
+    <script src="/js/upload_file.js"></script>
 
     <title>File Upload Example using Apache commons File Upload Utility </title>
     <meta name="_csrf" content="${_csrf.token}"/>

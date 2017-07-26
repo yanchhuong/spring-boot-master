@@ -103,7 +103,7 @@
           return;
         }
         
-        stompClient.send("/app/chat",{"content-type": "application/json;charset=UTF-8"}, JSON.stringify({
+        stompClient.send("/app/chat",{"content-type": "application/json;charset=UTF-16"}, JSON.stringify({
           'recipient': user,
           'message' : message
         })); 
