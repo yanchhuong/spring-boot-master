@@ -49,14 +49,10 @@ import org.springframework.boot.CommandLineRunner;
 @EnableConfigurationProperties(StorageProperties.class)
 @EntityScan(basePackages = {"com.heroku.model"})
 @EnableJpaRepositories(basePackages = "com.heroku.dao")
-@PropertySource("classpath:application.properties")
+@PropertySource(value = "classpath:application.properties", ignoreResourceNotFound=true)
 
 public class Application extends SpringBootServletInitializer{
-	@Autowired
-	private static  Environment env;
-	
-	
-	
+
 	private static  Logger LOGGER =  LoggerFactory.getLogger(Application.class);
 	
 	@Override
@@ -68,9 +64,6 @@ public class Application extends SpringBootServletInitializer{
       //  SpringApplication.run(Application.class, args);
     	 LOGGER.info("Start to Access URLs:HEROKU.......");
     	 
-    	 String mongodbUrl = env.getProperty("spring.datasource.url");
-    	 String defaultDb = env.getProperty("spring.datasource.name");
-    	LOGGER.info("DATABASE......."+ mongodbUrl);
         SpringApplication app = new SpringApplication(Application.class);
       //  app.setBannerMode(Banner.Mode.OFF);
         app.run(args);   
