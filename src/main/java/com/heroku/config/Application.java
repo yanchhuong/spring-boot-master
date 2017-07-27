@@ -49,7 +49,7 @@ import org.springframework.boot.CommandLineRunner;
 @EnableConfigurationProperties(StorageProperties.class)
 @EntityScan(basePackages = {"com.heroku.model"})
 @EnableJpaRepositories(basePackages = "com.heroku.dao")
-@PropertySource(value = "classpath:application.properties", ignoreResourceNotFound=true)
+/*@PropertySource(value = "classpath:application.properties", ignoreResourceNotFound=true)*/
 
 public class Application extends SpringBootServletInitializer{
 
