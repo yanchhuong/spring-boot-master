@@ -29,6 +29,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.heroku.model.StorageProperties;
@@ -37,20 +38,27 @@ import com.heroku.service.StorageService;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan("com.heroku")
+@ComponentScan(basePackages={"com.heroku.*"})
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
-@EntityScan(basePackages = "com.heroku.model")
+@EntityScan(basePackages = {"com.heroku.model"})
 @EnableJpaRepositories(basePackages = "com.heroku.dao")
-@PropertySource("classpath:/src/main/resources/application.properties")
+@PropertySource("classpath:application.properties")
 
 public class Application extends SpringBootServletInitializer{
+	@Autowired
+	private static  Environment env;
+	
+	
+	
 	private static  Logger LOGGER =  LoggerFactory.getLogger(Application.class);
+	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(Application.class);
@@ -59,6 +67,10 @@ public class Application extends SpringBootServletInitializer{
     public static void main(String[] args) {
       //  SpringApplication.run(Application.class, args);
     	 LOGGER.info("Start to Access URLs:HEROKU.......");
+    	 
+    	 String mongodbUrl = env.getProperty("spring.datasource.url");
+    	 String defaultDb = env.getProperty("spring.datasource.name");
+    	LOGGER.info("DATABASE......."+ mongodbUrl + defaultDb);
         SpringApplication app = new SpringApplication(Application.class);
       //  app.setBannerMode(Banner.Mode.OFF);
         app.run(args);   
