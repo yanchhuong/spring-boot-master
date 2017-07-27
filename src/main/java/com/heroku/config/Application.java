@@ -80,7 +80,7 @@ public class Application extends SpringBootServletInitializer{
 	    		     .create()
 	    	        .username("byblymbwplvqok")
 	    	        .password("cae2b0e11df826f8bda5648a56006aa2355bdf9baf64e70d537b7d5c64e1f149")
-	    	        .url("postgres://byblymbwplvqok:cae2b0e11df826f8bda5648a56006aa2355bdf9baf64e70d537b7d5c64e1f149@ec2-50-17-236-15.compute-1.amazonaws.com:5432/d2lgq83l6p58h5")
+	    	        .url("postgres://ec2-50-17-236-15.compute-1.amazonaws.com:5432/d2lgq83l6p58h5")
 	    	        .driverClassName("org.postgresql.Driver")
 	    	        .build();
 	 }
