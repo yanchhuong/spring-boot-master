@@ -70,7 +70,7 @@ public class Application extends SpringBootServletInitializer{
     	 
     	 String mongodbUrl = env.getProperty("spring.datasource.url");
     	 String defaultDb = env.getProperty("spring.datasource.name");
-    	LOGGER.info("DATABASE......."+ mongodbUrl + defaultDb);
+    	LOGGER.info("DATABASE......."+ mongodbUrl);
         SpringApplication app = new SpringApplication(Application.class);
       //  app.setBannerMode(Banner.Mode.OFF);
         app.run(args);   
