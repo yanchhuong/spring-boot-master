@@ -47,7 +47,7 @@ import org.springframework.boot.CommandLineRunner;
 @EnableConfigurationProperties(StorageProperties.class)
 @EntityScan(basePackages = "com.heroku.model")
 @EnableJpaRepositories(basePackages = "com.heroku.dao")
-@PropertySource("classpath:/spring/environment/${ctms.env}/application.properties")
+@PropertySource("classpath:/src/main/resources/application.properties")
 
 public class Application extends SpringBootServletInitializer{
 	private static  Logger LOGGER =  LoggerFactory.getLogger(Application.class);
