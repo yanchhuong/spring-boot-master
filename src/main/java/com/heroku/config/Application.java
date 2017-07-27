@@ -16,15 +16,20 @@
 package com.heroku.config;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.heroku.model.StorageProperties;
 import com.heroku.service.StorageService;
@@ -35,15 +40,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 
+@Configuration
+@EnableAutoConfiguration
 @ComponentScan("com.heroku")
 @SpringBootApplication
 @EnableConfigurationProperties(StorageProperties.class)
+@EntityScan(basePackages = "com.heroku.model")
+@EnableJpaRepositories(basePackages = "com.heroku.dao")
+@PropertySource("classpath:application.properties")
 
 public class Application extends SpringBootServletInitializer{
 	private static  Logger LOGGER =  LoggerFactory.getLogger(Application.class);
-
-
-	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(Application.class);
@@ -65,7 +72,7 @@ public class Application extends SpringBootServletInitializer{
             storageService.init();
 		};
 	}
-   @ConfigurationProperties(prefix = "datasource.postgres")
+     @ConfigurationProperties(prefix = "datasource.postgres")
 	 @Bean
 	 @Primary
 	 public DataSource dataSource() {
